@@ -310,6 +310,9 @@ const PRESENT_COLORS = [
 const PRESENTS = PRESENT_COLORS.map(c => sprite(PRESENT_ROWS, c, '#120c1c'));
 const PRESENTS_FLAT = PRESENT_COLORS.map(c => sprite(PRESENT_ROWS, c));
 const PRESENT_GREY = sprite(PRESENT_ROWS, { C: '#2e3460', D: '#232850', Y: '#3b4486' });
+// Geschenk im Wurf-Knopf: grün mit goldener Schleife, damit es sich vom roten Knopf abhebt
+const BUTTON_PRESENT = sprite(PRESENT_ROWS, { C: '#2fb865', D: '#1b7a44', Y: '#ffd23f' }, '#0c1a10');
+const BUTTON_PRESENT_OFF = sprite(PRESENT_ROWS, { C: '#4a5070', D: '#363b58', Y: '#7a80a0' }, '#0c1a10');
 
 // Hausfarben; "dim" = Variante für unartige (dunkle) Häuser
 function mix(a, b, t) {
@@ -2190,7 +2193,7 @@ function drawControls() {
   blocks(c, ddx, ddy + push, dr, b, '#f0b93a');
   blocks(c, ddx, ddy + push, dr - b, b, ready ? (dp ? '#b8262c' : '#d8312f') : '#6e2834');
   blocks(c, ddx - b, ddy + push - Math.round(dr * 0.35), Math.round(dr * 0.45), b, ready ? 'rgba(255,140,130,0.35)' : 'rgba(255,255,255,0.08)');
-  const spr = ready ? PRESENTS[0] : PRESENT_GREY;
+  const spr = ready ? BUTTON_PRESENT : BUTTON_PRESENT_OFF;
   const ps = Math.max(3, Math.floor(dr * 1.15 / spr.width));
   const pw = spr.width * ps, ph = spr.height * ps;
   c.drawImage(spr, Math.round(ddx - pw / 2), Math.round(ddy + push - ph / 2), pw, ph);
